@@ -1,0 +1,109 @@
+﻿@model TaskLibrary.Model.Tasks
+
+@{
+    ViewData["Title"] = "Create";
+    var name = ViewBag.UserName;
+}
+
+<h1>Create New Task</h1>
+
+<hr />
+<div class="row">
+    
+
+    <div class="col-md-4">
+        <form asp-action="PostCreate">
+              <div asp-validation-summary="ModelOnly" class="text-danger"></div> 
+            
+            <div class="form-group">
+                <label asp-for="TaskTitle" class="control-label"></label>
+                <input asp-for="TaskTitle" class="form-control" required xdr />
+                <!--  <span asp-validation-for="TaskTitle" class="text-danger"></span>-->
+            </div>
+            <div style="margin-bottom: 30px;"></div>            <div class="form-group">
+                <label asp-for="StartDate" class="control-label">Start Date</label>
+                <input asp-for="StartDate" class="form-control" required type="datetime-local" min="@DateTime.Today.ToString("yyyy-MM-ddTHH:mm")" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div style="margin-bottom: 30px;"></div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label">End Date</label>
+                <input asp-for="EndDate" class="form-control" required type="datetime-local" min="@DateTime.Today.ToString("yyyy-MM-ddTHH:mm")" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    var startDateInput = document.getElementById("StartDate");
+                    var endDateInput = document.getElementById("EndDate");
+
+                    startDateInput.addEventListener("input", function () {
+                        validateEndDate();
+                    });
+
+                    endDateInput.addEventListener("input", function () {
+                        validateEndDate();
+                    });
+
+                    function validateEndDate() {
+                        var startDate = new Date(startDateInput.value);
+                        var endDate = new Date(endDateInput.value);
+
+                        if (endDate < startDate) {
+                            endDateInput.setCustomValidity("End Date must be greater than or equal to Start Date.");
+                        } else {
+                            endDateInput.setCustomValidity("");
+                        }
+                    }
+                });
+            </script>
+            <div style="margin-bottom: 30px;"></div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" required style="height: 150px;"></textarea>
+                <!--     <span asp-validation-for="Description" class="text-danger"></span>-->
+            </div>
+
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label" hidden></label>
+                <input asp-for="UserId" class="form-control" type="text" value="@Model.UserId" hidden />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="StatusType" class="control-label">Status Type</label>
+                <select asp-for="StatusType" class="form-control" required>
+                    <option value="">Select Status Type</option>
+                    <option value="ToDo">To Do</option>
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <!--<span asp-validation-for="StatusType" class="text-danger"></span>-->
+            </div>
+
+
+            <div style="margin-bottom: 40px;"></div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-sm btn-info mr-1" />
+                <a asp-action="Index" class="btn btn-sm btn-danger mr-1">Back to List</a>
+            </div>
+        </form>
+        <style>
+            body {
+                background-color: #f8f9fa;
+                margin-bottom: 60px;
+                background-image: url('../Images/index.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            </<style >
+    </div>
+</div>
+
+
+
+

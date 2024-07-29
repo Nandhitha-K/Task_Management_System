@@ -1,0 +1,29 @@
+﻿@model TaskSchedulerMVCApp.Models.GetDate
+
+@{
+    ViewData["Title"] = "GetStartDateAndUser";
+}
+
+<h1>View By StartDate And User</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="GetStartDateAndUser">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label">Start Date</label>
+                <input asp-for="StartDate" class="form-control" required />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div style="margin-bottom: 30px;"></div>
+           
+            <div style="margin-bottom: 30px;"></div>
+            <div class="form-group">
+                <input type="submit" value="View" class="btn btn-sm btn-info mr-1" />
+                <a asp-action="Index" class="btn btn-sm btn-danger mr-1">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+

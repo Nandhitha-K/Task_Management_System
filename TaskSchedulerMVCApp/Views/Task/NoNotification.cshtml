@@ -1,0 +1,21 @@
+﻿
+@model TaskLibrary.Model.Tasks
+
+@{
+    ViewData["Title"] = "NoNotification";
+}
+
+<h1>Notification</h1>
+
+@{
+    ViewBag.Title = "N0Notification";
+}
+
+<div class="alert alert-success" role="alert">
+    No Notification found!
+</div>
+
+
+@Html.ActionLink("Dismiss", "Index", "Task", null, new { @class = "btn btn-danger" })
+
+

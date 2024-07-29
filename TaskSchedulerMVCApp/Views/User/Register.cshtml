@@ -1,0 +1,120 @@
+﻿@model TaskLibrary.Model.Users
+@{
+    ViewData["Title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+ <style>
+        body {
+            background-color: #f8f9fa;
+            margin-bottom: 60px;
+            background-image: url('../Images/login2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 500px;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        .form-title {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .btn-create {
+            background-color: #007bff;
+            border: none;
+            width: 100%;
+        }
+
+        .btn-create:hover {
+                background-color: #0056b3;
+        }
+</style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="form-title">Register</h1>
+        <hr />
+        <form asp-action="Register" method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+           
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" required id="username" name="username">
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" required id="email" name="email">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" required id="password" name="password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="confirmPsword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" required id="confirmPsword" name="confirmPsword">
+                <span class="text-danger" id="confirmPasswordError"></span>
+            </div>
+            
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-create">Create</button>
+            </div>
+        </form>
+    </div>
+
+ <script>
+        // Add event listener to check password confirmation
+        document.getElementById("password").addEventListener("keyup", function () {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPsword").value;
+            var confirmPasswordError = document.getElementById("confirmPasswordError");
+
+            if (password !== confirmPassword) {
+                confirmPasswordError.textContent = "Passwords do not match";
+            } else {
+                confirmPasswordError.textContent = "";
+            }
+        });
+
+        document.getElementById("confirmPsword").addEventListener("keyup", function () {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPsword").value;
+            var confirmPasswordError = document.getElementById("confirmPasswordError");
+
+            if (password !== confirmPassword) {
+                confirmPasswordError.textContent = "Passwords do not match";
+            } else {
+                confirmPasswordError.textContent = "";
+            }
+        });
+</script>
+</body>
+</html>
+<div style="margin-bottom: 30px;"></div>
+<div>
+    <a asp-action="Login" class="btn btn-sm btn-danger mr-1">Back to Login</a>
+</div>

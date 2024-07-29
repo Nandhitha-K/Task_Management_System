@@ -1,0 +1,46 @@
+﻿@model TaskLibrary.Model.Tasks
+
+@{
+    ViewData["Title"] = "Details";
+   
+}
+
+<h1>About the task</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TaskTitle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TaskTitle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-sm btn-danger mr-1" > Back to List</a >
+    
+</div>

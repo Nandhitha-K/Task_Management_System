@@ -1,0 +1,42 @@
+﻿@model TaskLibrary.Model.Tasks
+
+@{
+    ViewData["Title"] = "Notification";
+}
+
+<h1>Notification</h1>
+
+@{
+    ViewBag.Title = "Notification";
+}
+
+<div class="alert alert-success" role="alert">
+    Its time for your task!!
+</div>
+
+<script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+<script src="~/signalr/hubs"></script>
+
+<script>
+    $(function () {
+        var notificationHub = $.connection.notificationHub;
+
+        // Define client-side method to handle incoming notifications
+        notificationHub.client.receiveNotification = function (message) {
+            // Handle incoming notification, e.g., display it to the user
+            console.log(message);
+            // Example: Display notification in a div
+            $('#notificationDiv').text(message);
+        };
+
+        // Start the SignalR connection
+        $.connection.hub.start().done(function () {
+            console.log('SignalR connection established');
+        }).fail(function (error) {
+            console.error('SignalR connection error: ' + error);
+        });
+    });
+</script>
+
+
+@Html.ActionLink("Dismiss", "Index", "Task", null, new { @class = "btn btn-danger" })
